@@ -46,12 +46,11 @@ jobs:
 
     - name: Replace image tag in patch.yaml
       run: |
-        cp -r kustomize gitops-infra/tmp-kustomize
-        sed -i "s|REPLACEME|${{ steps.vars.outputs.sha_short }}|" gitops-infra/tmp-kustomize/overlays/${{ env.ENV }}/patch.yaml
+        sed -i "s|REPLACEME|${{ steps.vars.outputs.sha_short }}|" kustomize/overlays/${{ env.ENV }}/patch.yaml
 
     - name: Render final deployment
       run: |
-        kustomize build gitops-infra/tmp-kustomize/overlays/${{ env.ENV }} > deployment.yaml
+        kustomize build kustomize/overlays/${{ env.ENV }} > deployment.yaml
 
     - name: Push manifest to GitOps repo
       run: |
