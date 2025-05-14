@@ -51,8 +51,9 @@ jobs:
     - name: Render final deployment
       run: |
         kustomize build kustomize/overlays/${{ env.ENV }} > deployment.yaml
-   - name: Push manifest to GitOps repo
-     run: |
+
+    - name: Push manifest to GitOps repo
+      run: |
         mkdir -p gitops-infra/apps/${{ env.APP_NAME }}/${{ env.ENV }}
         cp deployment.yaml gitops-infra/apps/${{ env.APP_NAME }}/${{ env.ENV }}/deployment.yaml
         cp kustomize/base/service.yaml gitops-infra/apps/${{ env.APP_NAME }}/${{ env.ENV }}/service.yaml
@@ -63,3 +64,4 @@ jobs:
         git add .
         git commit -m "Deploy $APP_NAME to $ENV with image tag ${{ steps.vars.outputs.sha_short }}"
         git push
+
