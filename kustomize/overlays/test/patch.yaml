@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test1
+spec:
+  template:
+    spec:
+      containers:
+        - name: test1
+          image: faizul56/test1-app:REPLACEME
+
