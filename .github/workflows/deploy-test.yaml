@@ -20,9 +20,9 @@ jobs:
 
     - name: Install Kustomize
       run: |
-        curl -Lo kustomize-bin https://github.com/kubernetes-sigs/kustomize/releases/latest/download/kustomize_linux_amd64
-        chmod +x kustomize-bin
-        sudo mv kustomize-bin /usr/local/bin/kustomize
+        curl -Lo kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz
+    tar -xzf kustomize.tar.gz
+    sudo mv kustomize /usr/local/bin/kustomize
 
     - name: Docker login
       uses: docker/login-action@v2
